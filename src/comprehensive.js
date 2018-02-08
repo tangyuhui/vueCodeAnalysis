@@ -92,6 +92,9 @@ Vue.prototype={
     }
 }
 
+document.querySelector("#xg").addEventListener("click",function(){
+    app.data.user.name="tang"+Date.now();
+})
 
 let app = new Vue({
     el: '#app',
@@ -103,8 +106,5 @@ let app = new Vue({
     }
 });
 app.$watch("set",function(self){
-       self.compile(self.originalHtml);
-})
-document.querySelector("#xg").addEventListener("click",function(){
-    app.data.user.name="tang"+Date.now();
+    self.compile(self.originalHtml);
 })

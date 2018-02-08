@@ -4,8 +4,7 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry:{'tue':['babel-polyfill','./src/demo2'],
-            'compile':['babel-polyfill','./src/compile']} ,
+    entry:{'vue':['./src/vue'],'test':['./src/test']} ,
     output: {
         filename: '[name].js?[chunkhash]',
         chunkFilename: "[id].js?[chunkhash]",
@@ -18,8 +17,13 @@ module.exports = {
             loader: 'babel-loader'
         }]
     },
+    devtool:'source-map',
     plugins: [new HtmlWebpackPlugin({
-        template: 'compile.html',
-        chunks:['compile']
+        template: 'index.html',
+        chunks:['vue']
+    }),new HtmlWebpackPlugin({
+    	filename:'test.html',
+        template: './test.html',
+        chunks:['test']
     })]
 };

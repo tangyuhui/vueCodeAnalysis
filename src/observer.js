@@ -3,7 +3,6 @@ import * as util from './util';
 import arrayProto from './array-augmentations';
 import PubSub from './pubsub';
 function Observer(data,path="") {
-    let b = "我是块级作用域let";
     this.data = data;
     this.event=new PubSub();
     this.path=path;
@@ -23,6 +22,7 @@ Observer.prototype = {
                 }else if(util.isArray(value)){
                     value.__proto__ =Object.create(arrayProto);
                 }
+                console.log("directives",self.directives);
                 self.event.emit(path||key,value);
                 oldValue=value;
             },
